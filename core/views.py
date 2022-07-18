@@ -2,6 +2,7 @@
 from django.shortcuts import render
 
 # DRF Imports
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -16,6 +17,9 @@ from .models import Post
 #     return JsonResponse(data)
 
 class TestView(APIView):
+
+    permission_classes = (IsAuthenticated, )
+
     def get(self, request, *args, **kwargs):
         qs = Post.objects.all()
         # post = qs.first() 
